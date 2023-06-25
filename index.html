@@ -1,26 +1,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>MinDalle Image Generation</title>
-    <style>
-        /* Add your CSS styling here */
-    </style>
+    <title>MinDalle Image Generator</title>
+    <!-- Add any CSS styling you want -->
 </head>
 <body>
-    <h1>MinDalle Image Generation</h1>
-    <form action="https://753b-35-229-221-44.ngrok.io" method="post">
-        <label for="text">Text:</label>
-        <input type="text" id="text" name="text" required><br><br>
+    <h1>MinDalle Image Generator</h1>
+    <form action="/generate" method="post">
+        <label for="text">Enter Text:</label>
+        <input type="text" id="text" name="text" required><br>
+
         <label for="seed">Seed:</label>
-        <input type="number" id="seed" name="seed" required><br><br>
+        <input type="number" id="seed" name="seed" value="6" required><br>
+
         <label for="grid_size">Grid Size:</label>
-        <input type="number" id="grid_size" name="grid_size" required><br><br>
+        <input type="number" id="grid_size" name="grid_size" value="3" required><br>
+
         <input type="submit" value="Generate Image">
     </form>
-
-    {% if generated %}
-    <h2>Generated Image</h2>
-    <img src="{{ image_url }}" alt="Generated Image">
-    {% endif %}
 </body>
 </html>
