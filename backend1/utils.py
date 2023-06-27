@@ -1,3 +1,6 @@
+from consts import ModelSize
+
+
 def parse_arg_boolean(value):
     value = value.lower()
 
@@ -5,5 +8,4 @@ def parse_arg_boolean(value):
         return True
     elif value in ["false", "no", "n", "0", "f"]:
         return False
-
     return False
