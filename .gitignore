@@ -1,0 +1,8 @@
+/wandb
+/backend/wandb
+/.vscode
+/backend/__pycache__
+/backend/venv/
+/venv/
+/interface/node_modules
+/interface/build
