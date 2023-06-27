@@ -36,25 +36,26 @@ def generate_images_api():
 generated_imgs = dalle_model.generate_images(text_prompt, num_images)
 
 returned_generated_images = []
-    if args.save_to_disk:
-        dir_name = os.path.join(args.output_dir,f"{time.strftime('%Y-%m-%d_%H-%M-%S')}_{text_prompt}")[:MAX_FILE_NAME_LEN]
-        Path(dir_name).mkdir(parents=True, exist_ok=True)
-    
-    for idx, img in enumerate(generated_imgs):
-        if args.save_to_disk: 
-          img.save(os.path.join(dir_name, f'{idx}.{args.img_format}'), format=args.img_format)
+if args.save_to_disk:
+    dir_name = os.path.join(args.output_dir,f"{time.strftime('%Y-%m-%d_%H-%M-%S')}_{text_prompt}")[:MAX_FILE_NAME_LEN]
+    Path(dir_name).mkdir(parents=True, exist_ok=True)
 
-        buffered = BytesIO()
-        img.save(buffered, format=args.img_format)
-        img_str = base64.b64encode(buffered.getvalue()).decode("utf-8")
-        returned_generated_images.append(img_str)
+for idx, img in enumerate(generated_imgs):
+    if args.save_to_disk: 
+        img.save(os.path.join(dir_name, f'{idx}.{args.img_format}'), format=args.img_format)
 
-    print(f"Created {num_images} images from text prompt [{text_prompt}]")
-    
-    response = {'generatedImgs': returned_generated_images,
-    'generatedImgsFormat': args.img_format}
-    return jsonify(response)
+    buffered = BytesIO()
+    img.save(buffered, format=args.img_format)
+    img_str = base64.b64encode(buffered.getvalue()).decode("utf-8")
+    returned_generated_images.append(img_str)
 
+print(f"Created {num_images} images from text prompt [{text_prompt}]")
+
+response = {
+    'generatedImgs': returned_generated_images,
+    'generatedImgsFormat': args.img_format
+}
+return jsonify(response)
 
 @app.route("/", methods=["GET"])
 @cross_origin()
