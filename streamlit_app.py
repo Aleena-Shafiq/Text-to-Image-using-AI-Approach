@@ -31,7 +31,11 @@ def create_and_show_images(url, text, num_images):
             for index in range(len(generatedImgs)):
                 img = base64.b64decode(generatedImgs[index])
                 image = Image.open(BytesIO(img))
-                st.image(image, use_column_width=True)
+
+                # Apply border-radius style to the image
+                image_style = f"border-radius: 10px;"
+                st.image(image, use_column_width=True, output_format="PNG", style=image_style)
+
                 # Add download link
                 download_link = f'<a href="data:image/png;base64,{base64.b64encode(img).decode()}" download="image{index}.png">Download Image</a>'
                 st.markdown(download_link, unsafe_allow_html=True)
