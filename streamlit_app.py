@@ -36,7 +36,7 @@ def create_and_show_images(url, text, num_images):
                 download_link = f'<a href="data:image/png;base64,{base64.b64encode(img).decode()}" download="image{index}.png">Download Image</a>'
                 st.markdown(download_link, unsafe_allow_html=True)
 
-st.markdown("<h1 style='text-align: center;'>Text to Image converter using DALL-E Model</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center;'>Text to Image converter </h1>", unsafe_allow_html=True)
 
 # Insert your name
 st.markdown("<div align='center'><i>Created By: Aleena Shafiq (20-CP-90)</i></div>", unsafe_allow_html=True)
