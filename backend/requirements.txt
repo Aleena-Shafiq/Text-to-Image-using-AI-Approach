@@ -6,5 +6,5 @@ tqdm
 flask_cloudflared
 accelerate
 transformers
-diffusers
-werkzeug==2.2
+diffusers==0.15.0
+werkzeug==2.3.3
